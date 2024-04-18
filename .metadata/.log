@@ -1,0 +1,85 @@
+!SESSION 2024-04-19 03:32:18.977 -----------------------------------------------
+eclipse.buildId=4.21.0.202312011804
+java.version=17.0.9
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4 -keyring /Users/yeonjae-jeong/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.springframework.boot.ide.branding.sts4 -keyring /Users/yeonjae-jeong/.eclipse_keyring
+
+!ENTRY org.eclipse.emf.ecore 2 0 2024-04-19 03:32:21.755
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY org.eclipse.jface 2 0 2024-04-19 03:34:15.512
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-04-19 03:34:15.512
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.navigate.open.type"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.lsp4e.symbolinworkspace"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-04-19 03:36:04.974
+!MESSAGE Classpath changed for project: Board
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-04-19 03:36:10.813
+!MESSAGE Classpath changed for project: Board
+
+!ENTRY org.eclipse.core.resources 4 2 2024-04-19 03:36:10.814
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException: Cannot read field "loggerServiceTracker" because the return value of "org.eclipse.buildship.core.internal.CorePlugin.getInstance()" is null
+	at org.eclipse.buildship.core.internal.CorePlugin.logger(CorePlugin.java:262)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizingBuildScriptUpdateListener.resourceChanged(SynchronizingBuildScriptUpdateListener.java:57)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:321)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:311)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:174)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:458)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1586)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-04-19 03:36:10.816
+!MESSAGE Boot project ADDED: Board
+
+!ENTRY org.springframework.tooling.boot.ls 4 0 2024-04-19 03:36:10.817
+!MESSAGE Cannot invoke "org.springframework.tooling.boot.ls.BootLanguageServerPlugin.getLog()" because the return value of "org.springframework.tooling.boot.ls.BootLanguageServerPlugin.getDefault()" is null
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.springframework.tooling.boot.ls.BootLanguageServerPlugin.getLog()" because the return value of "org.springframework.tooling.boot.ls.BootLanguageServerPlugin.getDefault()" is null
+	at org.springframework.tooling.boot.ls.Startup.handleProjectsFound(Startup.java:41)
+	at org.springframework.tooling.jdt.ls.commons.BootProjectTracker.fireEvent(BootProjectTracker.java:74)
+	at org.springframework.tooling.jdt.ls.commons.BootProjectTracker.processProject(BootProjectTracker.java:61)
+	at org.springframework.tooling.jdt.ls.commons.BootProjectTracker$1.classpathChanged(BootProjectTracker.java:44)
+	at org.springframework.tooling.jdt.ls.commons.classpath.ClasspathListenerManager$MyListener.visit(ClasspathListenerManager.java:83)
+	at org.springframework.tooling.jdt.ls.commons.classpath.ClasspathListenerManager$MyListener.visitChildren(ClasspathListenerManager.java:162)
+	at org.springframework.tooling.jdt.ls.commons.classpath.ClasspathListenerManager$MyListener.visit(ClasspathListenerManager.java:73)
+	at org.springframework.tooling.jdt.ls.commons.classpath.ClasspathListenerManager$MyListener.lambda$0(ClasspathListenerManager.java:65)
+	at org.springframework.tooling.jdt.ls.commons.classpath.ClasspathListenerManager$1.run(ClasspathListenerManager.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.resources 4 2 2024-04-19 03:36:10.817
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.springsource.ide.eclipse.commons.frameworks.core.workspace.ProjectChangeListenerManager$ProjectChangeListener.projectChanged(org.eclipse.core.resources.IProject)" because "this.listener" is null
+	at org.springsource.ide.eclipse.commons.frameworks.core.workspace.ProjectChangeListenerManager.projectChanged(ProjectChangeListenerManager.java:65)
+	at org.springsource.ide.eclipse.commons.frameworks.core.workspace.ProjectChangeListenerManager.resourceChanged(ProjectChangeListenerManager.java:57)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:321)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:311)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:174)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:458)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1586)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
