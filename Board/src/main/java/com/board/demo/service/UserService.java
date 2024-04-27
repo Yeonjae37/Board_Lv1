@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import static java.util.regex.Pattern.matches;
+
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor //private final UserRepository userRepository; 여기에 필요한건가봄
 public class UserService {
     private final UserRepository userRepository;
 
@@ -22,11 +24,11 @@ public class UserService {
 
         boolean checkValid = true;
         String pattern = "^[a-zA-Z0-9]*$";
-        if ( !(Pattern.matches(pattern,userid) && userid.length() >= 4 && userid.length() <= 10)){
+        if ( !(matches(pattern,userid) && userid.length() >= 4 && userid.length() <= 10)){
             System.out.println("아이디 형식이 잘못 되었습니다.");
             checkValid = false;
         }
-        else if( !(Pattern.matches(pattern,userpw) && userpw.length() >= 8 && userpw.length() <= 16)) {
+        else if( !(matches(pattern,userpw) && userpw.length() >= 8 && userpw.length() <= 16)) {
             System.out.println("비밀번호 형식이 잘못 되었습니다.");
             checkValid = false;
         }
@@ -37,18 +39,30 @@ public class UserService {
         return checkValid;
     }
 
-    public UserDto join(UserDto userDto){
+    public Boolean join(UserDto userDto){
         if(!checkValidCondition(userDto)){
-            throw new IllegalArgumentException("회원가입 정보가 정확하지 않습니다.");
+            //throw new IllegalArgumentException("회원가입 정보가 정확하지 않습니다.");
+            return false;
         };
 
         Optional<User> found = userRepository.findByUserId(userDto.getUserId());
         if(found.isPresent()){
-            throw new IllegalArgumentException("중복된 사용자 id가 존재합니다.");
+            //throw new IllegalArgumentException("중복된 사용자 id가 존재합니다.");
+            System.out.println("중복된 사용자 id가 존재합니다.");
+            return false;
         }
         User user = new User(userDto);
         userRepository.save(user);
-        return userDto;
+        return true;
     }
 
+    public boolean login(String userId, String userPw) {
+        Optional<User> userOptional = userRepository.findByUserId(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            String userPassword = user.getUserPw();
+            return userPw.equals(userPassword);
+        }
+        return false;
+    }
 }

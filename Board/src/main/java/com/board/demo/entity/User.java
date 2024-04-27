@@ -46,4 +46,5 @@ public class User {
         this.userName = userDto.getUserName();
         this.userBirth = userDto.getUserBirth();
     }
+
 }

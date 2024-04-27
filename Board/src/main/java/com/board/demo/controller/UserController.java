@@ -32,14 +32,25 @@ public class UserController {
     }
     @PostMapping("/joinUser")
     public String userJoin(@ModelAttribute UserDto userDto){
-        userService.join(userDto);
-        // 회원가입 성공 시 보여줄 페이지 또는 redirect 경로
-        return "index";
+        if (userService.join(userDto)){
+            return "index";
+        }
+        else {
+            return "joinFail";
+        }
     }
 
     @GetMapping("/loginUser")
-    public String loginUser() {
-        return "loginUser";  // Thymeleaf를 사용할 경우, loginUser.html 템플릿을 반환합니다.
+    public String createLoginForm() {
+        return "loginUser";
+    }
+    @PostMapping("/loginUser")
+    public String loginUser(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw) {
+        if (userService.login(userId, userPw)){
+            return "boards";
+        } else {
+            return "loginFail";
+        }
     }
 
     @DeleteMapping("/drop")
