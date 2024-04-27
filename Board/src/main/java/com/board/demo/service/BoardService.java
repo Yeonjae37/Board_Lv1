@@ -21,6 +21,18 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public BoardDto fromEntity(Board board) {
+        BoardDto boardDto = new BoardDto();
+        boardDto.setId(board.getId());
+        boardDto.setType(board.getType());
+        boardDto.setTitle(board.getTitle());
+        boardDto.setContent(board.getContent());
+        boardDto.setWriter(board.getWriter());
+        boardDto.setViewcnt(board.getViewcnt());
+        boardDto.setDate(board.getDate());
+        return boardDto;
+    }
+
     public Board getBoard(long id){
         return boardRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Board not found with id " + id));
