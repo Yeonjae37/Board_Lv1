@@ -46,7 +46,8 @@ public class BoardService {
             return ResponseEntity.badRequest().body("게시글을 찾을 수 없습니다.");
         }
         Board board = boardOptional.get();
-        return ResponseUtil.createResponse(board, StatusEnum.OK, "게시글 가져오기 성공", HttpStatus.OK);
+        BoardDto boardDto = fromEntity(board);
+        return ResponseUtil.createResponse(boardDto, StatusEnum.OK, "게시글 가져오기 성공", HttpStatus.OK);
     }
 
     public ResponseEntity<?> addBoard(BoardDto boardDto) {
