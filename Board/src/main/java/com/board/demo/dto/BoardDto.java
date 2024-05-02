@@ -1,5 +1,8 @@
 package com.board.demo.dto;
 
+import com.board.demo.entity.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +14,7 @@ import java.util.Date;
 @Data
 @Getter
 @Setter
+@JsonIgnoreProperties(value = {"password"})
 public class BoardDto {
     private Long id;
     private String type;
@@ -19,6 +23,7 @@ public class BoardDto {
     private String writer;
     private int viewcnt;
     private LocalDate date;
+    private String password;
 
     public Long getId() { return id; }
     public String getType() { return type; }
@@ -27,6 +32,7 @@ public class BoardDto {
     public String getWriter() { return writer; }
     public int getViewcnt() { return viewcnt; }
     public LocalDate getDate() { return date; }
+    public String getPassword() { return password; }
 
     public void setDate(LocalDate date) {
         this.date = date;

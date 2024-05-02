@@ -8,7 +8,6 @@ public class ResponseDto {
     private StatusEnum status;
     private String message;
     private Object data;
-
     public ResponseDto() {
         this.status = StatusEnum.BAD_REQUEST;
         this.data = null;

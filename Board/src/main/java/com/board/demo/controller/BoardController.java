@@ -6,6 +6,7 @@ import com.board.demo.entity.Board;
 import com.board.demo.entity.StatusEnum;
 import com.board.demo.repository.BoardRepository;
 import com.board.demo.service.BoardService;
+import com.board.demo.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,30 +39,16 @@ public class BoardController {
     }
 
     @ResponseBody
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getBoard(@PathVariable("id") Long id){
-        Board board = boardService.getBoard(id);
-        ResponseDto responseDto = new ResponseDto();
-        BoardDto boardDto = boardService.fromEntity(board);
-
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-
-        responseDto.setStatus(StatusEnum.OK);
-        responseDto.setData(boardDto);
-        responseDto.setMessage("가져오기 성공");
-
-        //return ResponseEntity.ok(board);
-        return new ResponseEntity<>(responseDto, header, HttpStatus.OK);
+        return boardService.getBoard(id);
     }
 
     @ResponseBody
     @PostMapping("/add")
     public ResponseEntity<?> addBoard(@RequestBody BoardDto boardDto){
         if (boardService.validCondition(boardDto)){
-            boardService.addBoard(boardDto);
-            Board board = new Board(boardDto);
-            return ResponseEntity.ok(board);
+            return boardService.addBoard(boardDto);
         }
         else {
             return ResponseEntity.badRequest().body("필수 입력 값이 누락되었습니다.");
@@ -69,9 +56,14 @@ public class BoardController {
     }
 
     @ResponseBody
-    @PostMapping("/delete")
-    public ResponseEntity<?> deleteBoard(int id){
-        boardService.deleteBoard(id);
-        return ResponseEntity.ok("ok");
+    @DeleteMapping("/delete/{id}/{pw}")
+    public ResponseEntity<?> deleteBoard(@PathVariable("id") Long id, @PathVariable("pw") String pw){
+        return boardService.deleteBoard(id, pw);
+    }
+
+    @ResponseBody
+    @PutMapping("/update")
+    public ResponseEntity<?> updateBoard(@RequestBody BoardDto boardDto){
+        return boardService.updateBoard(boardDto);
     }
 }
